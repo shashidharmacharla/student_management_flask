@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">Student List</h3>
+
+<form method="GET" action="{{ url_for('index') }}" class="d-flex mb-3">
+    <input type="search" name="search" value="{{ search_query }}" class="form-control me-2" placeholder="Search students...">
+    <button type="submit" class="btn btn-outline-primary">Search</button>
+    <a href="{{ url_for('export_csv') }}" class="btn btn-info ms-2">Export CSV</a>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.roll }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.course }}</td>
+            <td>
+                <a href="/edit/{{ student.id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete/{{ student.id }}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if students|length == 0 %}
+<p class="text-muted">No students found.</p>
+{% endif %}
+{% endblock %}
+
+
+

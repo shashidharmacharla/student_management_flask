@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">Dashboard - Student Count by Course</h3>
+<canvas id="courseChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('courseChart').getContext('2d');
+  const courseChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: {{ courses | tojson }},
+      datasets: [{
+        label: 'Number of Students',
+        data: {{ counts | tojson }},
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          precision: 0
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
+
