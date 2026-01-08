@@ -5,8 +5,6 @@ cd student_management
 python -m venv venv
 # Windows
 venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
 
 pip install flask flask-login
 
