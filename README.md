@@ -3,7 +3,7 @@ git clone https://github.com/shashidharmacharla/student_management_flask.git
 cd student_management
 
 python -m venv venv
-# Windows
+
 venv\Scripts\activate
 
 pip install flask flask-login
